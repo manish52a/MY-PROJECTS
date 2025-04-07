@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <title>Personal Fitness Trainer</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+    body { line-height: 1.6; color: #333; }
+    header {
+      background: url('https://img.freepik.com/premium-photo/stylish-young-man-with-confident-pose-arms-crossed_1032986-256599.jpg?ga=GA1.1.464614793.1740777151&semt=ais_hybrid&w=740') no-repeat center center/cover;
+      color: white;
+      padding: 250px 20px;
+      text-align: center;
+      
+    }
+    header h1 { font-size: 3rem; margin-bottom: 10px; }
+    header p { font-size: 1.2rem; }
+
+    section { padding: 50px 20px; max-width: 1000px; margin: auto; }
+
+    h2 { text-align: center; margin-bottom: 30px; color: #111; }
+
+    .about, .services, .testimonials, .contact {
+      background: #f9f9f9;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      padding: 30px;
+    }
+
+    body.dark {
+  background-color: #121212;
+  color: #e0e0e0;
+}
+
+body.dark header {
+  color: white;
+}
+
+body.dark section {
+  background-color: #1e1e1e;
+}
+
+body.dark .about,
+body.dark .services,
+body.dark .testimonials,
+body.dark .contact {
+  background-color: #1e1e1e;
+  color: #e0e0e0;
+}
+
+body.dark .testimonial-slide {
+  background-color: #2a2a2a;
+}
+
+body.dark .contact-box {
+  background-color: #444;
+  color: #fff;
+}
+
+body.dark .contact-box.whatsapp {
+  background-color: #128c7e;
+}
+
+body.dark footer {
+  background-color: #000;
+  color: #ccc;
+}
+
+#theme-toggle.dark {
+  background: #fff;
+  color: #000;
+}
+
+
+    .about-container {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.about-text {
+  flex: 1;
+}
+
+.about-image {
+  flex: 1;
+  text-align: center;
+}
+
+.about-image img {
+  max-width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+
+    .services ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
+    .services li img {
+  width: 100%;
+  max-width: 250px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+.services li p {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.testimonials {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.testimonials h2 {
+  font-size: 2rem;
+  margin-bottom: 30px;
+  color: #111;
+}
+
+.testimonial-slider {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.testimonial-slide {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  background-color: #f5f5f5;
+  padding: 15px 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  text-align: left;
+}
+
+.testimonial-slide img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.testimonial-slide strong {
+  display: block;
+  font-size: 1rem;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.testimonial-slide p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+
+
+.contact {
+  background-color: #f9f9f9;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.contact h2 {
+  font-size: 2rem;
+  margin-bottom: 30px;
+  color: #111;
+}
+
+.contact-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.contact-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1rem;
+  color: #333;
+}
+
+.contact-box {
+  background-color: #4a4848;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 8px;
+  font-weight: 500;
+  transition: transform 0.2s ease;
+}
+
+.contact-box:hover {
+  transform: scale(1.05);
+}
+
+.contact-box i {
+  font-size: 1.2rem;
+}
+
+.contact-box.whatsapp {
+  background-color: #25D366;
+  text-decoration: none;
+}
+
+    footer {
+      background: #222;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      .services ul { flex-direction: column; }
+      .services li { flex: 1 1 100%; }
+    }
+
+
+
+
+    /* media quiress */
+
+    @media (max-width: 768px) {
+  header {
+    padding: 120px 20px;
+  }
+  header h1 {
+    font-size: 2rem;
+  }
+  header p {
+    font-size: 1rem;
+  }
+
+  .about-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .about-text,
+  .about-image {
+    flex: 1 1 100%;
+  }
+
+  .services ul {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .services li {
+    flex: 1 1 100%;
+    max-width: 300px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .testimonial-slide {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .testimonial-slide img {
+    margin-bottom: 10px;
+  }
+
+  .contact-box {
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px 16px;
+    text-align: center;
+  }
+
+  .contact-item span {
+    font-size: 1rem;
+  }
+}
+
+  </style>
+</head>
+
+
+  
+  
+<body>
+
+    <button id="theme-toggle" style="position: fixed; top: 15px; right: 20px; z-index: 1000; padding: 8px 16px; background: #333; color: #fff; border: none; border-radius: 5px; cursor: pointer;">
+        Toggle Theme
+      </button>
+      
+  <header>
+    <h1>Manish - Personal Fitness Trainer</h1>
+    <p>Helping you achieve your dream body through expert guidance</p>
+  </header>
+
+  <section class="about">
+    <div class="about-container">
+      <div class="about-text">
+        <h2>about me</h2>
+        <p>Hi, I'm Manish, a certified fitness trainer specializing in weight loss, strength training, and personalized diet plans. I help people transform their bodies and live healthier lives. Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum, necessitatibus?</p>
+        
+      </div>
+      
+     
+      <div class="about-image">
+        <img src="asset/portrait-young-handsome-sportsman-holds-hand-chin-dark-background_613910-19200.jpg" alt="Fitness Trainer">
+      </div>
+    </div>
+  </section>
+  
+  <section class="services">
+    <h2>My Services</h2>
+    <ul>
+      <li>
+        <img src="asset/weight-loss-7705107_640.jpg" alt="Weight Loss">
+        <p>💪 Weight Loss Programs</p>
+      </li>
+      <li>
+        <img src="asset/victor-freitas-vqDAUejnwKw-unsplash.jpg" alt="Strength Training">
+        <p>🏋️ Strength Training</p>
+      </li>
+      <li>
+        <img src="asset/clipboard-mock-up-slate-background.jpg" alt="Diet Plans">
+        <p>🥗 Custom Diet Plans</p>
+      </li>
+    </ul>
+  </section>
+  
+  <section class="testimonials">
+    <h2>What My Clients Say</h2>
+    <div class="testimonial-slider">
+      <div class="testimonial-slide">
+        <img src="asset/images.jpeg" alt="Priya S.">
+        <div>
+          <strong>Priya S.</strong>
+          <p>"Manish helped me lose 10kg in 2 months. Super motivating and always there for support!"</p>
+        </div>
+      </div>
+      <div class="testimonial-slide">
+        <img src="asset/portrait-smiling-gym-client-taking-260nw-2474572541.webp" alt="Rohan M.">
+        <div>
+          <strong>Rohan M.</strong>
+          <p>"I’ve gained real strength and confidence with Manish’s training. Highly recommended!"</p>
+        </div>
+      </div>
+      <div class="testimonial-slide">
+        <img src="asset/images (1).jpeg" alt="Alok K.">
+        <div>
+          <strong>Alok K.</strong>
+          <p>"His diet plans are simple and effective. I feel energetic all day."</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="contact" id="contact">
+    <h2>Contact Me</h2>
+    <div class="contact-content">
+      <div class="contact-item">
+        <span>Email:</span>
+        <div class="contact-box">
+          <i class="fas fa-envelope"></i>
+          manishbavne2703@gmail.com
+        </div>
+      </div>
+  
+      <div class="contact-item">
+        <a href="https://wa.me/9977349320" target="_blank" class="contact-box whatsapp">
+          <i class="fab fa-whatsapp"></i>
+          WhatsApp Me
+        </a>
+      </div>
+    </div>
+  </section>
+  
+
+  <footer>
+    &copy; 2025 Manish Fitness | All Rights Reserved
+  </footer>
+
+</body>
+
+
+<script>
+    const toggleBtn = document.getElementById('theme-toggle');
+    toggleBtn.addEventListener('click', () => {
+      document.body.classList.toggle('dark');
+      toggleBtn.classList.toggle('dark');
+      toggleBtn.textContent = document.body.classList.contains('dark') ? 'Light Theme' : 'Dark Theme';
+    });
+  </script>
+</html>
